@@ -249,7 +249,14 @@ int filtrByFild(struct book** Library, int bookInLibrary, int fildNumber)
 	{
 		char* fildName = getFildName(fildNumber);	//название поля книги
 		printf("\nEnter %s book: ", fildName);
-		(fildNumber == ID) ? getNumber(&filterOrID.bookID) : gets(filterOrID.filtr);
+		if(fildNumber == ID)
+		{
+			getNumber(&filterOrID.bookID);
+		}
+		else
+		{
+			gets(filterOrID.filtr);
+		}
 		printf("\n");
 	}
 
