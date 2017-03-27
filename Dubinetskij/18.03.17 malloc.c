@@ -50,23 +50,23 @@
 #define GENRE '4'
 #define ID '5'
 
-void fillLibtary(struct book* library, int bookInLibrary);
-void printBooks(struct book* library, int bookInLibrary);
-void bookNameSort(struct book* library, int bookInLibrary);
-void reverseBookInLibraru(struct book* library, int bookInLibrary);
-void replaseBook(struct book* library, int positionFirstBook, int positionSecondBook);
-int filtrByFild(struct book* library, int bookInLibrary, int fildNumber);
-void bookEdit(struct book* library, int bookInLibrary, int editedBook);
-void bookFildEdit(char* bookFild, char fild);
-void getNumber(int* userNumber);
-char* getFildName(int fildNumber);
-void showMainMenu();
-void showEditMenu();
-void showMethodOfEditMenu();
-char menuChoice();
-char menuEditChoice();
-char menuMethodOfEditChoise();
-bool isPointerEmpty(struct book* library);
+void fillLibtary (struct book* library, int bookInLibrary);
+void printBooks (struct book* library, int bookInLibrary);
+void bookNameSort (struct book* library, int bookInLibrary);
+void reverseBookInLibraru (struct book* library, int bookInLibrary);
+void replaseBook (struct book* library, int positionFirstBook, int positionSecondBook);
+int filtrByFild (struct book* library, int bookInLibrary, int fildNumber);
+void bookEdit (struct book* library, int bookInLibrary, int editedBook);
+void bookFildEdit (char* bookFild, char fild);
+void getNumber (int* userNumber);
+char* getFildName (int fildNumber);
+void showMainMenu ();
+void showEditMenu ();
+void showMethodOfEditMenu ();
+char menuChoice ();
+char menuEditChoice ();
+char menuMethodOfEditChoise ();
+bool isPointerEmpty (struct book* library);
 
 /*книга*/
 struct book
@@ -79,70 +79,70 @@ struct book
 	int id;
 };
 
-int main()
+int main ()
 {
 	int bookInLibrary = BOOK_IN_LIBRARY;
 
 	/*Библиотека книг*/
-	struct book* bookLibrary = (struct book*)malloc(sizeof(struct book) * bookInLibrary);
-	if(isPointerEmpty(bookLibrary))
+	struct book* bookLibrary = (struct book*)malloc (sizeof (struct book) * bookInLibrary);
+	if (isPointerEmpty (bookLibrary))
 	{
 		return 1;
 	}
 
-	fillLibtary(bookLibrary, bookInLibrary);
+	fillLibtary (bookLibrary, bookInLibrary);
 
 	char pointOfMainMenuChoising = 0;		//Выбранный пункт главного меню
 	char librarySorted = NO_SORTED;			//Поле по которому отсортированы книги в библиотеке
 	bool isMainMenuShowing = false;			//Признак отображения главного меню
 
-	while(true)
+	while (true)
 	{
-		if(isMainMenuShowing == true)
+		if (isMainMenuShowing == true)
 		{
-			pointOfMainMenuChoising = menuChoice();
+			pointOfMainMenuChoising = menuChoice ();
 		}
-		showMainMenu();
+		showMainMenu ();
 
-		if(isMainMenuShowing == false)
+		if (isMainMenuShowing == false)
 		{
-			pointOfMainMenuChoising = menuChoice();
+			pointOfMainMenuChoising = menuChoice ();
 			isMainMenuShowing = true;
 		}
 
-		switch(pointOfMainMenuChoising)
+		switch (pointOfMainMenuChoising)
 		{
 		case PRINT_BOOK:
-			filtrByFild(bookLibrary, bookInLibrary, ALL);
+			filtrByFild (bookLibrary, bookInLibrary, ALL);
 			break;
 		case FIND_AUTOR_BOOK:
-			filtrByFild(bookLibrary, bookInLibrary, ALL);
-			printBooks(bookLibrary, bookInLibrary);
-			filtrByFild(bookLibrary, bookInLibrary, AUTOR);
-			showMainMenu();
+			filtrByFild (bookLibrary, bookInLibrary, ALL);
+			printBooks (bookLibrary, bookInLibrary);
+			filtrByFild (bookLibrary, bookInLibrary, AUTOR);
+			showMainMenu ();
 			break;
 		case FIND_NAME_BOOK:
-			filtrByFild(bookLibrary, bookInLibrary, ALL);
-			printBooks(bookLibrary, bookInLibrary);
-			filtrByFild(bookLibrary, bookInLibrary, NAME);
-			showMainMenu();
+			filtrByFild (bookLibrary, bookInLibrary, ALL);
+			printBooks (bookLibrary, bookInLibrary);
+			filtrByFild (bookLibrary, bookInLibrary, NAME);
+			showMainMenu ();
 			break;
 		case SORT_BOOK:
-			if(librarySorted != SORTED_BY_NAME)
+			if (librarySorted != SORTED_BY_NAME)
 			{
-				bookNameSort(bookLibrary, bookInLibrary);
+				bookNameSort (bookLibrary, bookInLibrary);
 				librarySorted = SORTED_BY_NAME;
 			}
 			else
 			{
-				reverseBookInLibraru(bookLibrary, bookInLibrary);
+				reverseBookInLibraru (bookLibrary, bookInLibrary);
 			}
 			break;
 		case EDIT_BOOK:
-			filtrByFild(bookLibrary, bookInLibrary, ALL);								//убрать фильтр со списка книг
-			printBooks(bookLibrary, bookInLibrary);
-			int bookPositionInLibrary = filtrByFild(bookLibrary, bookInLibrary, ID);	//Позиция книги в библиотеке
-			bookEdit(bookLibrary, bookInLibrary, bookPositionInLibrary);
+			filtrByFild (bookLibrary, bookInLibrary, ALL);								//убрать фильтр со списка книг
+			printBooks (bookLibrary, bookInLibrary);
+			int bookPositionInLibrary = filtrByFild (bookLibrary, bookInLibrary, ID);	//Позиция книги в библиотеке
+			bookEdit (bookLibrary, bookInLibrary, bookPositionInLibrary);
 			isMainMenuShowing = false;
 			continue;
 		case ESC:
@@ -150,20 +150,20 @@ int main()
 		default:
 			break;
 		}
-		printBooks(bookLibrary, bookInLibrary);
+		printBooks (bookLibrary, bookInLibrary);
 	}
-	free(bookLibrary);
+	free (bookLibrary);
 }
 
-void fillLibtary(struct book* library, int bookInLibrary)
+void fillLibtary (struct book* library, int bookInLibrary)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
 
 	struct book bookLibrary[BOOK_IN_LIBRARY] =
-	{ "Don Quixote",                "Cervantes",        "Francisco de Robles",  "Novel",				true,	1,
+	{"Don Quixote",                "Cervantes",        "Francisco de Robles",  "Novel",				true,	1,
 		"A Tale of Two Cities",       "Dickens",          "Chapman & Hall",       "Historical novel",	true,	2,
 		"The Alchemist",              "Coelho",           "HarperTorch",          "Adventure, fantasy",	true,	3,
 		"The Little Prince",          "Saint-Exupery",    "Reynal & Hitchcock",   "Philosophic",		true,	4,
@@ -174,57 +174,57 @@ void fillLibtary(struct book* library, int bookInLibrary)
 		"Dune",                       "Herbert",          "Chilton Books",        "Novel",				true,	9,
 		"The Secret",                 "Byrne",            "Atria Books",          "Self-help",			true,	10
 	};
-	for(int i = 0; i < bookInLibrary; i++)
+	for (int i = 0; i < bookInLibrary; i++)
 	{
 		library[i] = bookLibrary[i];
 	}
 }
 
 /*Печать книг*/
-void printBooks(struct book* library, int bookInLibrary)
+void printBooks (struct book* library, int bookInLibrary)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
-	printf("%2s%8s %21s %17s %15s\n\n", "Id", "Name", "Autor", "Publisher", "Genre");
-	for(int i = 0; i < bookInLibrary; i++)
+	printf ("%2s%8s %21s %17s %15s\n\n", "Id", "Name", "Autor", "Publisher", "Genre");
+	for (int i = 0; i < bookInLibrary; i++)
 	{
-		if(library[i].isShowed == true)
+		if (library[i].isShowed == true)
 		{
-			printf("%-2i%-25s%-14s%-20s%s\n", library[i].id, library[i].name, library[i].autor, library[i].publisher, library[i].genre);
+			printf ("%-2i%-25s%-14s%-20s%s\n", library[i].id, library[i].name, library[i].autor, library[i].publisher, library[i].genre);
 		}
 	}
 }
 
 /*Сортировка книг по возрастанию (метод Шелла)*/
-void bookNameSort(struct book* library, int bookInLibrary)
+void bookNameSort (struct book* library, int bookInLibrary)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
-	for(int i = bookInLibrary / 2; i > 0; i /= 2)
+	for (int i = bookInLibrary / 2; i > 0; i /= 2)
 	{
-		for(int j = i; j < bookInLibrary; j++)
+		for (int j = i; j < bookInLibrary; j++)
 		{
-			for(int k = j - i; ((k >= 0) && (strcmp(library[k].name, library[k + i].name) > 0)); k -= i)
+			for (int k = j - i; ((k >= 0) && (strcmp (library[k].name, library[k + i].name) > 0)); k -= i)
 			{
-				replaseBook(library, k, k + i);
+				replaseBook (library, k, k + i);
 			}
 		}
 	}
 }
 
 /*Изменение порядка книг в библиотеке на противоположный*/
-void reverseBookInLibraru(struct book* library, int bookInLibrary)
+void reverseBookInLibraru (struct book* library, int bookInLibrary)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
 	struct book tempBook;
-	for(int i = 0; (i < bookInLibrary / 2) && (i != bookInLibrary - 1 - i); i++)
+	for (int i = 0; (i < bookInLibrary / 2) && (i != bookInLibrary - 1 - i); i++)
 	{
 		tempBook = library[i];
 		library[i] = library[bookInLibrary - 1 - i];
@@ -233,9 +233,9 @@ void reverseBookInLibraru(struct book* library, int bookInLibrary)
 }
 
 /*Перестановка местами двух книг*/
-void replaseBook(struct book* library, int positionFirstBook, int positionSecondBook)
+void replaseBook (struct book* library, int positionFirstBook, int positionSecondBook)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
@@ -247,9 +247,9 @@ void replaseBook(struct book* library, int positionFirstBook, int positionSecond
 /*Фильтр библиотеке по выбранному полю.
 Возвращает ID книги, если фильтрация производится по ID,
 либо колличество найденных книг в противном случае.*/
-int filtrByFild(struct book* library, int bookInLibrary, int fildNumber)
+int filtrByFild (struct book* library, int bookInLibrary, int fildNumber)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return -1;
 	}
@@ -261,55 +261,55 @@ int filtrByFild(struct book* library, int bookInLibrary, int fildNumber)
 	int bookPositionOrCount = 0;	//Позиция книги в библиотеке либо колличество найденных книг
 	union bookUnion filterOrID;		//ID книги либо фильтр
 
-	if(fildNumber != ALL)
+	if (fildNumber != ALL)
 	{
-		char* fildName = getFildName(fildNumber);	//название поля книги
-		printf("\nEnter %s book: ", fildName);
-		if(fildNumber == ID)
+		char* fildName = getFildName (fildNumber);	//название поля книги
+		printf ("\nEnter %s book: ", fildName);
+		if (fildNumber == ID)
 		{
-			getNumber(&filterOrID.bookID);
+			getNumber (&filterOrID.bookID);
 		}
 		else
 		{
-			gets(filterOrID.filtr);
+			gets (filterOrID.filtr);
 		}
-		printf("\n");
+		printf ("\n");
 	}
 
-	for(int i = 0; i < bookInLibrary; i++)
+	for (int i = 0; i < bookInLibrary; i++)
 	{
-		switch(fildNumber)
+		switch (fildNumber)
 		{
 		case ALL:
 			library[i].isShowed = true;
 			bookPositionOrCount++;
 			break;
 		case NAME:
-			if(library[i].isShowed = strstr(library[i].name, filterOrID.filtr))
+			if (library[i].isShowed = strstr (library[i].name, filterOrID.filtr))
 			{
 				bookPositionOrCount++;
 			}
 			break;
 		case AUTOR:
-			if(library[i].isShowed = strstr(library[i].autor, filterOrID.filtr))
+			if (library[i].isShowed = strstr (library[i].autor, filterOrID.filtr))
 			{
 				bookPositionOrCount++;
 			}
 			break;
 		case PUBLISHER:
-			if(library[i].isShowed = strstr(library[i].publisher, filterOrID.filtr))
+			if (library[i].isShowed = strstr (library[i].publisher, filterOrID.filtr))
 			{
 				bookPositionOrCount++;
 			}
 			break;
 		case GENRE:
-			if(library[i].isShowed = strstr(library[i].genre, filterOrID.filtr))
+			if (library[i].isShowed = strstr (library[i].genre, filterOrID.filtr))
 			{
 				bookPositionOrCount++;
 			}
 			break;
 		case ID:
-			if(library[i].isShowed = (library[i].id == filterOrID.bookID))
+			if (library[i].isShowed = (library[i].id == filterOrID.bookID))
 			{
 				bookPositionOrCount = i;
 			}
@@ -322,30 +322,30 @@ int filtrByFild(struct book* library, int bookInLibrary, int fildNumber)
 }
 
 /*Редактирование выбранной книги*/
-void bookEdit(struct book* library, int bookInLibrary, int editedBook)
+void bookEdit (struct book* library, int bookInLibrary, int editedBook)
 {
-	if(isPointerEmpty(library))
+	if (isPointerEmpty (library))
 	{
 		return;
 	}
-	while(true)
+	while (true)
 	{
-		showEditMenu();
-		printBooks(library, bookInLibrary);
+		showEditMenu ();
+		printBooks (library, bookInLibrary);
 
-		switch(menuEditChoice())
+		switch (menuEditChoice ())
 		{
 		case EDIT_NAME:
-			bookFildEdit(library[editedBook].name, NAME);
+			bookFildEdit (library[editedBook].name, NAME);
 			break;
 		case EDIT_AUTOR:
-			bookFildEdit(library[editedBook].autor, AUTOR);
+			bookFildEdit (library[editedBook].autor, AUTOR);
 			break;
 		case EDIT_PUBLISHER:
-			bookFildEdit(library[editedBook].publisher, PUBLISHER);
+			bookFildEdit (library[editedBook].publisher, PUBLISHER);
 			break;
 		case EDIT_GENRE:
-			bookFildEdit(library[editedBook].genre, GENRE);
+			bookFildEdit (library[editedBook].genre, GENRE);
 			break;
 		case ESC:
 			return;
@@ -356,26 +356,26 @@ void bookEdit(struct book* library, int bookInLibrary, int editedBook)
 }
 
 /*Редактирование выбранного поля книги.*/
-void bookFildEdit(char* bookFild, char fild)
+void bookFildEdit (char* bookFild, char fild)
 {
-	char* fildName = getFildName(fild);
+	char* fildName = getFildName (fild);
 
-	while(true)
+	while (true)
 	{
-		showMethodOfEditMenu();
-		printf("%s book: %s\n", fildName, bookFild);
+		showMethodOfEditMenu ();
+		printf ("%s book: %s\n", fildName, bookFild);
 
-		switch(menuMethodOfEditChoise())
+		switch (menuMethodOfEditChoise ())
 		{
 		case UPPER:
-			strupr(bookFild);
+			strupr (bookFild);
 			break;
 		case LOWER:
-			strlwr(bookFild);
+			strlwr (bookFild);
 			break;
 		case WRITE_NEW:
-			printf("Write the new %s book: ", fildName);
-			gets(bookFild);
+			printf ("Write the new %s book: ", fildName);
+			gets (bookFild);
 			break;
 		case ESC:
 			return;
@@ -386,26 +386,26 @@ void bookFildEdit(char* bookFild, char fild)
 }
 
 /*Получение от пользователя одного целого числа*/
-void getNumber(int* userNumber)
+void getNumber (int* userNumber)
 {
 	char check; 					//колличество успешно считанных значений
 	do
 	{
-		check = scanf("%i", userNumber);
-		while(getchar() != '\n') {}
-		if((check == 1) && (*userNumber <= BOOK_IN_LIBRARY) && (*userNumber > 0))
+		check = scanf ("%i", userNumber);
+		while (getchar () != '\n') {}
+		if ((check == 1) && (*userNumber <= BOOK_IN_LIBRARY) && (*userNumber > 0))
 		{
 			break;
 		}
-		printf("Incorrect number. Pleasee try again.\n");
-	} while(true);
+		printf ("Incorrect number. Pleasee try again.\n");
+	} while (true);
 }
 
 /*Получение названия поля книги*/
-char* getFildName(int fildNumber)
+char* getFildName (int fildNumber)
 {
 	char* fildName = "";	//название поля книги
-	switch(fildNumber)
+	switch (fildNumber)
 	{
 	case NAME:
 		fildName = "Name";
@@ -428,45 +428,45 @@ char* getFildName(int fildNumber)
 }
 
 /*Отобрзить главное меню*/
-void showMainMenu()
+void showMainMenu ()
 {
-	system("cls");
-	printf("1   Print list of books\n");
-	printf("2   Find book by autor\n");
-	printf("3   Find book by name\n");
-	printf("4   Sort books by name\n");
-	printf("5   Edit book\n");
-	printf("ESC EXIT.\n\n");
+	system ("cls");
+	printf ("1   Print list of books\n");
+	printf ("2   Find book by autor\n");
+	printf ("3   Find book by name\n");
+	printf ("4   Sort books by name\n");
+	printf ("5   Edit book\n");
+	printf ("ESC EXIT.\n\n");
 }
 
 /*Отобразить меню редактирования книги*/
-void showEditMenu()
+void showEditMenu ()
 {
-	system("cls");
-	printf("1   Edit name book\n");
-	printf("2   Edit autor book\n");
-	printf("3   Edit publisher book\n");
-	printf("4   Edit genre book\n");
-	printf("ESC Back to previous Menu.\n\n");
+	system ("cls");
+	printf ("1   Edit name book\n");
+	printf ("2   Edit autor book\n");
+	printf ("3   Edit publisher book\n");
+	printf ("4   Edit genre book\n");
+	printf ("ESC Back to previous Menu.\n\n");
 }
 
 /*Отобразить меню выбора способа редактирования книги*/
-void showMethodOfEditMenu()
+void showMethodOfEditMenu ()
 {
-	system("cls");
-	printf("1   Change to upper\n");
-	printf("2   Change to lower\n");
-	printf("3   Write the new value\n");
-	printf("ESC Back to previous Menu.\n\n");
+	system ("cls");
+	printf ("1   Change to upper\n");
+	printf ("2   Change to lower\n");
+	printf ("3   Write the new value\n");
+	printf ("ESC Back to previous Menu.\n\n");
 }
 
 /*Выбор пункта главного меню*/
-char menuChoice()
+char menuChoice ()
 {
-	while(true)
+	while (true)
 	{
-		char pressKey = getch(); //нажатая клавиша
-		switch(pressKey)
+		char pressKey = getch (); //нажатая клавиша
+		switch (pressKey)
 		{
 		case PRINT_BOOK:
 		case FIND_AUTOR_BOOK:
@@ -482,12 +482,12 @@ char menuChoice()
 }
 
 /*Выбор пункта меню редактирования*/
-char menuEditChoice()
+char menuEditChoice ()
 {
-	while(true)
+	while (true)
 	{
-		char pressKey = getch(); //нажатая клавиша
-		switch(pressKey)
+		char pressKey = getch (); //нажатая клавиша
+		switch (pressKey)
 		{
 		case EDIT_NAME:
 		case EDIT_AUTOR:
@@ -502,12 +502,12 @@ char menuEditChoice()
 }
 
 /*Выбор пункта меню способа редактирования*/
-char menuMethodOfEditChoise()
+char menuMethodOfEditChoise ()
 {
-	while(true)
+	while (true)
 	{
-		char pressKey = getch(); //нажатая клавиша
-		switch(pressKey)
+		char pressKey = getch (); //нажатая клавиша
+		switch (pressKey)
 		{
 		case UPPER:
 		case LOWER:
@@ -520,11 +520,11 @@ char menuMethodOfEditChoise()
 	}
 }
 
-bool isPointerEmpty(struct book* library)
+bool isPointerEmpty (struct book* library)
 {
-	if(library == NULL)
+	if (library == NULL)
 	{
-		printf("\nSomething went wrong. Pointer for Library is empty.\n");
+		printf ("\nSomething went wrong. Pointer for Library is empty.\n");
 		return true;
 	}
 	return false;
