@@ -144,6 +144,8 @@ int main(int argc, char* argv[])
 			isMainMenuShowing = false;
 			continue;
 		case ESC:
+			saveLibrary(fileName, bookLibrary, bookInLibrary);	// Запись библиотеки в файл
+			closeLibrary(bookLibrary, bookInLibrary);			// Освобождение памяти
 			return 0;
 		default:
 			break;
@@ -151,8 +153,6 @@ int main(int argc, char* argv[])
 		printBooks(bookLibrary, bookInLibrary);
 	}
 
-	saveLibrary(fileName, bookLibrary, bookInLibrary);	// Запись библиотеки в файл
-	closeLibrary(bookLibrary, bookInLibrary);			// Освобождение памяти
 }
 
 /*Считать библиотеку из файла*/
