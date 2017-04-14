@@ -1,0 +1,10 @@
+1;Don Quixote;Cervantes;Francisco de Robles;Novel;
+2;A Tale of Two Cities;Dickens;Chapman & Hall;Historical novel;
+3;The Alchemist;Coelho;HarperTorch;Adventure, fantasy;
+4;The Little Prince;Saint-Exupery;Reynal & Hitchcock;Philosophic;
+5;Harry Potter;Rowling;Bloomsbury;Fantasy;
+6;Dream of the Red Chamber;Cao Xueqin;Gao E;Novel;
+7;Alice in Wonderland;Carroll;Macmillan;Children's fiction;
+8;The Young Guard;Fadeyev;Pioneer Pravda;Novel;
+9;Dune;Herbert;Chilton Books;Novel;
+10;The Secret;Byrne;Atria Books;Self-help;
